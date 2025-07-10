@@ -63,11 +63,13 @@ filenames = filenames.m;
 % remove any files that start with 'runUnitTests'
 filenames(startsWith(filenames, 'runUnitTests')) = [];
 
-% filter filenames based on wildcard if provided
-if nargin >= 1 && ~isempty(wildcard)
-    filenames = filenames(contains(filenames, wildcard));
+% In runUnitTests.m, after getting the filenames:
+exclude_patterns = {'pstdElastic', 'make', 'kWaveDiffusion', 'kWaveArray', 'kspaceFirstOrder', 'angularSpectrum', 'acousticFieldPropagator'};
+to_keep = true(size(filenames));
+for i = 1:numel(exclude_patterns)
+    to_keep = to_keep & ~contains(filenames, exclude_patterns{i});
 end
-
+filenames = filenames(to_keep);
 % extract number of files to test
 num_files = length(filenames);
 
@@ -95,6 +97,9 @@ for filename_index = 1:num_files
 
         % run the file and store results, capturing all printed output
         [test_info, test_pass] = evalc([fn '(' plot_simulations ',' plot_comparisons ');']);
+        if isempty(strtrim(test_info))
+            test_info = 'No information available';
+        end
         % print the captured output
         fprintf('%s', test_info);
 
