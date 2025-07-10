@@ -102,6 +102,7 @@ for filename_index = 1:num_files
         end
         % print the captured output
         fprintf('%s', test_info);
+        disp('  ');
 
     catch %#ok<CTCH>
        
