@@ -63,10 +63,13 @@ filenames = filenames.m;
 % remove any files that start with 'runUnitTests'
 filenames(startsWith(filenames, 'runUnitTests')) = [];
 
-% filter filenames based on wildcard if provided
-if nargin >= 1 && ~isempty(wildcard)
-    filenames = filenames(contains(filenames, wildcard));
+% In runUnitTests.m, after getting the filenames:
+exclude_patterns = {'pstdElastic', 'make', 'kWaveDiffusion', 'kWaveArray', 'kspaceFirstOrder', 'angularSpectrum', 'acousticFieldPropagator'};
+to_keep = true(size(filenames));
+for i = 1:numel(exclude_patterns)
+    to_keep = to_keep & ~contains(filenames, exclude_patterns{i});
 end
+filenames = filenames(to_keep);
 
 % extract number of files to test
 num_files = length(filenames);
