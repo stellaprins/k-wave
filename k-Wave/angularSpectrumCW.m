@@ -348,7 +348,7 @@ end
 
 % update command line status
 loop_start_time = datevec(datetime("now"));
-disp(['  precomputation completed in ' scaleTime(seconds(datetime(loop_start_time), datetime(start_time)))]);
+disp(['  precomputation completed in ' scaleTime(seconds(datetime(loop_start_time) - datetime(start_time)))]);
 disp('  starting time loop...');
 
 % loop over z-positions
