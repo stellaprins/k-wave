@@ -33,4 +33,4 @@ function date_string = getDateString()
 
 % get the current time
 
-date_string = char(datetime("now", "Format", "dd-MMM-yyyy-HH-mm-ss"))
+date_string = char(datetime("now", "Format", "dd-MMM-yyyy-HH-mm-ss"));
