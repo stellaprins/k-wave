@@ -576,4 +576,4 @@ if record_time_series
 end
 
 % update command line status
-disp(['  total computation time ' scaleTime(seconds(datetime("now") -datetime(start_time)))]);
+disp(['  total computation time ' scaleTime(seconds(datetime("now") - datetime(start_time)))]);
