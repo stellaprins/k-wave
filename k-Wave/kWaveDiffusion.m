@@ -1403,7 +1403,7 @@ classdef kWaveDiffusion < handle
            
             % display start time and time steps
             disp('Running k-Wave thermal simulation...');
-            disp(['  start time: ' datestr(start_time)]);
+            disp(['  start time: ' char(datetime(start_time))]);
             disp(['  dt: ' scaleSI(dt) 's, t_end: ' scaleSI(dt*Nt) 's, time steps: ' num2str(Nt)]);
             
             % get suitable scaling factor

@@ -3,8 +3,7 @@ function date_string = getDateString()
 %
 % DESCRIPTION:
 %     getDateString returns a string of the current date and time using
-%     datestr but replacing the white space and : character with an en
-%     dash.
+%     in the following format: "dd-MMM-yyyy-HH-mm-ss"
 %
 % USAGE:
 %     date_string = getDateString()
@@ -17,7 +16,7 @@ function date_string = getDateString()
 % This function is part of the k-Wave Toolbox (http://www.k-wave.org)
 % Copyright (C) 2009-2017 Bradley Treeby
 %
-% See also datevec(datetime("now")), date, datestr
+% See also datetime
 
 % This file is part of k-Wave. k-Wave is free software: you can
 % redistribute it and/or modify it under the terms of the GNU Lesser
@@ -33,8 +32,5 @@ function date_string = getDateString()
 % along with k-Wave. If not, see <http://www.gnu.org/licenses/>. 
 
 % get the current time
-date_string = datestr(datevec(datetime("now")));
 
-% replace the space and : characters with -
-date_string = strrep(date_string, ' ', '-');
-date_string = strrep(date_string, ':', '-');
+date_string = char(datetime("now", "Format", "dd-MMM-yyyy-HH-mm-ss"))

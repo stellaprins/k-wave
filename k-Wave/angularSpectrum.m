@@ -278,7 +278,7 @@ end
 
 % update command line status
 disp('Running angular spectrum projection...');
-disp(['  start time: ' datestr(start_time)]);
+disp(['  start time: ' char(datetime(start_time))]);
 disp(['  input plane size: ' num2str(Nx) ' by ' num2str(Ny) ' grid points (' num2str(scale * Nx * dx) ' by ' num2str(scale * Ny * dx) prefix 'm)']);
 disp(['  grid expansion: ' num2str(grid_expansion) ' grid points']);
 
