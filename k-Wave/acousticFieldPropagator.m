@@ -436,7 +436,7 @@ if save_to_disk
     end
     
     % update command line status
-    disp(['  computation completed in ' scaleTime(etime(datevec(datetime("now")), start_time))]);
+    disp(['  computation completed in ' scaleTime(seconds(datetime("now") - datetime(start_time)))]);
     
     % stop evaluation
     return
@@ -555,7 +555,7 @@ switch nargout
 end
    
 % update command line status
-disp(['  computation completed in ' scaleTime(etime(datevec(datetime("now")), start_time))]);
+disp(['  computation completed in ' scaleTime(seconds(datetime("now") - datetime(start_time)))]);
 
 % plot the propagator
 if plot_propagator

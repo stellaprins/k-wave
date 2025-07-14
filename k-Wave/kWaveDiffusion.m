@@ -942,7 +942,7 @@ classdef kWaveDiffusion < handle
                 if (obj.display_updates) && (t_index == obj.num_time_steps_before_simulation_time_estimate)
 
                     % display estimated simulation time
-                    disp(['  estimated simulation time ' scaleTime(etime(datevec(datetime("now")), loop_start_time) .* Nt ./ t_index) '...']);
+                    disp(['  estimated simulation time ' scaleTime(seconds(datetime("now") - datetime(loop_start_time)) .* Nt ./ t_index) '...']);
 
                 end                 
                                 
@@ -970,7 +970,7 @@ classdef kWaveDiffusion < handle
             
             % update command line status
             if obj.display_updates
-                disp(['  total computation time ' scaleTime(etime(datevec(datetime("now")), start_time))]);
+                disp(['  total computation time ' scaleTime(seconds(datetime("now") - datetime(start_time)))]);
             end
             
         end

@@ -270,7 +270,7 @@ end
 
 % display total time elapsed
 if disp_updates
-    disp(['  Total computation time ' scaleTime(etime(datevec(datetime("now")), start_time))]);
+    disp(['  Total computation time ' scaleTime(seconds(datetime("now") - datetime(start_time)))]);
 end
 
 % end of function

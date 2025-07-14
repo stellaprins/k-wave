@@ -1005,7 +1005,7 @@ classdef kWaveArray < handle
             mask = obj.getArrayBinaryMask(kgrid);
             mask_ind = find(mask);
             num_source_points = sum(mask(:));
-            disp(['completed in ' scaleTime(etime(datevec(datetime("now")), comp_start_time))]);
+            disp(['completed in ' scaleTime(seconds(datetime("now") - datetime(comp_start_time)))]);
           
             % number of time points in the signal
             Nt = size(source_signal, 2);
@@ -1026,7 +1026,7 @@ classdef kWaveArray < handle
                 comp_start_time = datevec(datetime("now"));
                 fprintf(['  calculating element ' num2str(element_num) ' grid weights...       ']);
                 source_weights = obj.getElementGridWeights(kgrid, element_num);
-                disp(['completed in ' scaleTime(etime(datevec(datetime("now")), comp_start_time))]);
+                disp(['completed in ' scaleTime(seconds(datetime("now") - datetime(comp_start_time)))]);
                 
                 % get indices of the non-zero points 
                 element_mask_ind = find(source_weights ~= 0);
@@ -1040,11 +1040,11 @@ classdef kWaveArray < handle
                 distributed_source_signal(local_ind, :) = ...
                     distributed_source_signal(local_ind, :) ...
                     + bsxfun(@times, source_weights(element_mask_ind), source_signal(element_num, :));
-                disp(['completed in ' scaleTime(etime(datevec(datetime("now")), comp_start_time))]);
+                disp(['completed in ' scaleTime(seconds(datetime("now") - datetime(comp_start_time)))]);
                 
             end
             
-            disp(['  total computation time ' scaleTime(etime(datevec(datetime("now")), func_start_time))]); %#ok<*DETIM,*datevec(datetime("now"))>
+            disp(['  total computation time ' scaleTime(seconds(datetime("now") - datetime(func_start_time)))]); %#ok<*DETIM,*datevec(datetime("now"))>
             
         end
 
@@ -1087,7 +1087,7 @@ classdef kWaveArray < handle
             mask = obj.getArrayBinaryMask(kgrid);
             mask_ind = find(mask);
             num_source_points = sum(mask(:));
-            disp(['completed in ' scaleTime(etime(datevec(datetime("now")), comp_start_time))]);
+            disp(['completed in ' scaleTime(seconds(datetime("now") - datetime(comp_start_time)))]);
             
             % estimate size of the signal
             data_type = estimateSourceSize(obj, num_source_points, kgrid.Nt);
@@ -1102,7 +1102,7 @@ classdef kWaveArray < handle
                 comp_start_time = datevec(datetime("now"));
                 fprintf(['  calculating element ' num2str(element_num) ' grid weights...       ']);
                 source_weights = obj.getElementGridWeights(kgrid, element_num);
-                disp(['completed in ' scaleTime(etime(datevec(datetime("now")), comp_start_time))]);
+                disp(['completed in ' scaleTime(seconds(datetime("now") - datetime(comp_start_time)))]);
 
                 % get indices of the non-zero points
                 element_mask_ind = find(source_weights ~= 0);
@@ -1131,11 +1131,11 @@ classdef kWaveArray < handle
                 % the hologram element
                 distributed_source_signal(local_ind, :) = ...
                     distributed_source_signal(local_ind, :) + sw .* source_signal;
-                disp(['completed in ' scaleTime(etime(datevec(datetime("now")), comp_start_time))]);
+                disp(['completed in ' scaleTime(seconds(datetime("now") - datetime(comp_start_time)))]);
                 
             end
             
-            disp(['  total computation time ' scaleTime(etime(datevec(datetime("now")), func_start_time))]);
+            disp(['  total computation time ' scaleTime(seconds(datetime("now") - datetime(func_start_time)))]);
             
         end
         

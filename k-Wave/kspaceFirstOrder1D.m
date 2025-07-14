@@ -844,7 +844,7 @@ for t_index = index_start:index_step:index_end
 
     % estimate the time to run the simulation
     if t_index == ESTIMATE_SIM_TIME_STEPS
-        disp(['  estimated simulation time ' scaleTime(etime(datevec(datetime("now")), loop_start_time) * index_end / t_index) '...']);
+        disp(['  estimated simulation time ' scaleTime(seconds(datetime("now") - datetime(loop_start_time)) * index_end / t_index) '...']);
     end      
     
     % plot data if required
@@ -1013,7 +1013,7 @@ elseif ~isfield(sensor, 'record') && ~flags.cuboid_corners
 end
 
 % update command line status
-disp(['  total computation time ' scaleTime(etime(datevec(datetime("now")), start_time))]);
+disp(['  total computation time ' scaleTime(seconds(datetime("now") - datetime(start_time)))]);
 
 % switch off log
 if flags.create_log

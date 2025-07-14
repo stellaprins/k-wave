@@ -117,7 +117,7 @@ end
 % CREATE OUTPUT
 % =========================================================================
 
-completion_time = scaleTime(etime(datevec(datetime("now")), regression_start_time));
+completion_time = scaleTime(seconds(datetime("now") - datetime(regression_start_time)));
 comp_info = getComputerInfo;
 info = comp_info;
 info.completion_time = completion_time;

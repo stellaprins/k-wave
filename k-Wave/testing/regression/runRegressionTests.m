@@ -287,7 +287,7 @@ disp(['O/S TYPE:                 ' comp_info.operating_system_type]);
 disp(['O/S:                      ' comp_info.operating_system]);
 disp(['MATLAB VERSION:           ' comp_info.matlab_version]);
 disp(['TESTED K-WAVE VERSION:    ' kwave_ver]);
-disp(['TESTS COMPLETED IN:       ' scaleTime(etime(datevec(datetime("now")), regression_start_time))]);
+disp(['TESTS COMPLETED IN:       ' scaleTime(seconds(datetime("now") - datetime(regression_start_time)))]);
 disp('  ');
 
 % display individual test results

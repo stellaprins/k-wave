@@ -400,7 +400,7 @@ end
 
 % update command line status
 loop_start_time = datevec(datetime("now"));
-disp(['  precomputation completed in ' scaleTime(etime(loop_start_time, start_time))]);
+disp(['  precomputation completed in ' scaleTime(seconds(datetime(loop_start_time)-datetime(start_time)))]);
 disp('  starting z-step loop...');
 
 % loop over z-positions
@@ -494,7 +494,7 @@ for z_index = 1:Nz
 
         % update command line status
         if z_index == loops_for_time_est
-            disp(['  estimated simulation time ' scaleTime(etime(datevec(datetime("now")), loop_start_time) * Nz / z_index) '...']);
+            disp(['  estimated simulation time ' scaleTime(seconds(datetime("now") - datetime(loop_start_time)) * Nz / z_index) '...']);
         end
         
         % plot updates
@@ -522,7 +522,7 @@ for z_index = 1:Nz
 end
 
 % update command line status
-disp(['  simulation completed in ' scaleTime(etime(datevec(datetime("now")), loop_start_time))]);
+disp(['  simulation completed in ' scaleTime(seconds(datetime("now") - datetime(loop_start_time)))]);
 
 % =========================================================================
 % POST PROCESSING
@@ -576,4 +576,4 @@ if record_time_series
 end
 
 % update command line status
-disp(['  total computation time ' scaleTime(etime(datevec(datetime("now")), start_time))]);
+disp(['  total computation time ' scaleTime(seconds(datetime("now") -datetime(start_time)))]);
