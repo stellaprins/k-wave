@@ -134,7 +134,7 @@ function varargout = angularSpectrum(input_plane, dx, dt, z_pos, medium, varargi
 % along with k-Wave. If not, see <http://www.gnu.org/licenses/>.
 
 % start timer
-start_time = clock;
+start_time = datevec(datetime("now"));
 
 % =========================================================================
 % INPUT CHECKING
@@ -399,7 +399,7 @@ if plot_updates
 end
 
 % update command line status
-loop_start_time = clock;
+loop_start_time = datevec(datetime("now"));
 disp(['  precomputation completed in ' scaleTime(etime(loop_start_time, start_time))]);
 disp('  starting z-step loop...');
 
@@ -494,7 +494,7 @@ for z_index = 1:Nz
 
         % update command line status
         if z_index == loops_for_time_est
-            disp(['  estimated simulation time ' scaleTime(etime(clock, loop_start_time) * Nz / z_index) '...']);
+            disp(['  estimated simulation time ' scaleTime(etime(datevec(datetime("now")), loop_start_time) * Nz / z_index) '...']);
         end
         
         % plot updates
@@ -522,7 +522,7 @@ for z_index = 1:Nz
 end
 
 % update command line status
-disp(['  simulation completed in ' scaleTime(etime(clock, loop_start_time))]);
+disp(['  simulation completed in ' scaleTime(etime(datevec(datetime("now")), loop_start_time))]);
 
 % =========================================================================
 % POST PROCESSING
@@ -576,4 +576,4 @@ if record_time_series
 end
 
 % update command line status
-disp(['  total computation time ' scaleTime(etime(clock, start_time))]);
+disp(['  total computation time ' scaleTime(etime(datevec(datetime("now")), start_time))]);
