@@ -224,7 +224,7 @@ end
 acousticFieldPropagator(amp_in, phase_in, dx, f0, c0, 'SaveToDisk', input_filename, input_args{:});
 
 % store time to save input
-compute_time.save_input = etime(datevec(datetime("now")), global_start_time);
+compute_time.save_input = seconds(datetime("now") - datetime(global_start_time));
 
 % start timer
 compute_start_time = datevec(datetime("now"));
@@ -250,7 +250,7 @@ else
 end
 
 % store time to run simulation
-compute_time.simulation = etime(datevec(datetime("now")), compute_start_time);
+compute_time.simulation = seconds(datetime("now") - compute_start_time);
 
 % start timer
 load_start_time = datevec(datetime("now"));
@@ -274,10 +274,10 @@ if delete_data
 end
 
 % store time to load output
-compute_time.load_output = etime(datevec(datetime("now")), load_start_time);
+compute_time.load_output = seconds(datetime("now") - datetime(load_start_time));
 
 % store total time
-compute_time.total = etime(datevec(datetime("now")), global_start_time);
+compute_time.total = seconds(datetime("now") - datetime(global_start_time));
 
 % assign outputs
 switch nargout
