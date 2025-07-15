@@ -1167,7 +1167,7 @@ if options.save_test_log
     disp('  ');                                                                
     disp('-----------------------------------------------------------------------------------------------');
     disp('  ');
-    disp(['START DATE:                                      ' char(start_time]);
+    disp(['START DATE:                                      ' char(start_time)]);
     disp(['COMPUTER:                                        ' computer_info.computer_name]);
     disp(['USER NAME:                                       ' computer_info.user_name]);
     disp(['O/S:                                             ' computer_info.operating_system]);
