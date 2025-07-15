@@ -161,7 +161,7 @@ if exist('getkWavePath', 'file') == 0
 end
 
 % get start time
-start_time = datetime("now");
+start_time = datetime('now');
 
 % get PC information
 computer_info = getComputerInfo;
@@ -1136,7 +1136,7 @@ if options.run_cpp_comparison_tests
 disp(['C++ SIMS WITH L_INF > ' num2str(ERROR_TOLERANCE) ':  ' num2str(number_cpp_errors)]);
 disp(['INDEX OF C++ ERRORS:         ' num2str(location_cpp_errors)]);
 end
-disp(['ELAPSED TIME:                ' scaleTime(seconds(datetime("now") - start_time))]);
+disp(['ELAPSED TIME:                ' scaleTime(seconds(datetime('now') - start_time))]);
 disp('---------------------------------------------------------------------------------------------------');
 
 % switch off log
@@ -1208,7 +1208,7 @@ if options.save_test_log
     disp(['C++ SIMS WITH L_INF > ' num2str(ERROR_TOLERANCE) ':  ' num2str(number_cpp_errors)]);
     disp(['INDEX OF C++ ERRORS:         ' num2str(location_cpp_errors)]);
     end
-    disp(['ELAPSED TIME:                ' scaleTime(seconds(datetime("now") - start_time))]);
+    disp(['ELAPSED TIME:                ' scaleTime(seconds(datetime('now') - start_time))]);
     disp('---------------------------------------------------------------------------------------------------');
     
     % close diary file

@@ -50,7 +50,7 @@ if nargin < 2 || isempty(show_results)
 end
 
 % start the timer
-regression_start_time = datetime("now");
+regression_start_time = datetime('now');
 
 % literals
 plot_simulations = 'false';
@@ -117,7 +117,7 @@ end
 % CREATE OUTPUT
 % =========================================================================
 
-completion_time = scaleTime(seconds(datetime("now") - regression_start_time));
+completion_time = scaleTime(seconds(datetime('now') - regression_start_time));
 comp_info = getComputerInfo;
 info = comp_info;
 info.completion_time = completion_time;
