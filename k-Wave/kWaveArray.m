@@ -1044,7 +1044,7 @@ classdef kWaveArray < handle
                 
             end
             
-            disp(['  total computation time ' scaleTime(seconds(datetime('now') - datetime(func_start_time)))]); %#ok<*DETIM,*datetime('now')>
+            disp(['  total computation time ' scaleTime(seconds(datetime('now') - func_start_time))]); %#ok<*DETIM,*CLOCK>
             
         end
 
@@ -1135,7 +1135,7 @@ classdef kWaveArray < handle
                 
             end
             
-            disp(['  total computation time ' scaleTime(seconds(datetime('now') - datetime(func_start_time)))]);
+            disp(['  total computation time ' scaleTime(seconds(datetime('now') - func_start_time))]);
             
         end
         
