@@ -65,17 +65,23 @@ disp(['✅ Number of tests passed: ' num2str(num_passed)]);
 disp(['❌ Number of tests failed: ' num2str(num_failed)]);
 disp('  ');
 
-% Show failed tests using test_struct
+% Show failed tests using Markdown table with foldout for test_info
 failed_idx = find(~[results.pass]);
 if ~isempty(failed_idx)
-    disp('❌ FAILED TESTS:');
+    disp('❌ FAILED TESTS (Markdown Table):');
+    disp('| Test Name | Details |');
+    disp('|-----------|---------|');
     for i = failed_idx
         fn = results(i).test;
         fn = fn(1:end - 2);
-        disp(fn);
         if ~isempty(results(i).test_info)
-            fprintf('%s\n', results(i).test_info);
-            disp('  ');
+            % Use Markdown details tag for foldout
+            details_str = sprintf('<details><summary>Show Info</summary>\n\n%s\n\n</details>', results(i).test_info);
+        else
+            details_str = '';
         end
+        % Escape pipe characters in details_str
+        details_str = strrep(details_str, '|', '\|');
+        disp(['| ' fn ' | ' details_str ' |']);
     end
 end
