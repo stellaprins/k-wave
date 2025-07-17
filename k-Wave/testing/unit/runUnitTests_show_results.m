@@ -64,7 +64,6 @@ num_failed = numel(results) - num_passed;
 disp(['✅ Number of tests passed: ' num2str(num_passed)]);
 disp(['❌ Number of tests failed: ' num2str(num_failed)]);
 disp('  ');
-
 % Show failed tests using Markdown table with foldout for test_info
 failed_idx = find(~[results.pass]);
 if ~isempty(failed_idx)
@@ -75,12 +74,12 @@ if ~isempty(failed_idx)
         fn = results(i).test;
         fn = fn(1:end - 2);
         if ~isempty(results(i).test_info)
-            % Use Markdown details tag for foldout
+            % Use raw Markdown details tag for foldout
             details_str = sprintf('<details><summary>Show Info</summary>\n\n%s\n\n</details>', results(i).test_info);
         else
             details_str = '';
         end
-        % Escape pipe characters in details_str
+        % Only escape pipe characters in details_str
         details_str = strrep(details_str, '|', '\|');
         disp(['| ' fn ' | ' details_str ' |']);
     end
