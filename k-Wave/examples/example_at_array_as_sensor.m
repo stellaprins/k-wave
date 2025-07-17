@@ -71,6 +71,25 @@ medium.sound_speed = 1500;
 kgrid.makeTime(medium.sound_speed);
 
 % =========================================================================
+% SET NON-UNIFORM GRID 
+% =========================================================================
+
+% Vector of non uniform x points from 0 to (Nx-1)*dx (the physical length of the grid)
+xn_vec = linspace(0, (Nx-1)*dx, Nx).^1.2; 
+% Spacing between adjacent points in xn_vec, padding the last value
+dxudxn = [diff(xn_vec), xn_vec(end)-xn_vec(end-1)];
+% midpoints between each pair of adjacent grid points in xn_vec
+xn_vec_sgx = (xn_vec(1:end-1) + xn_vec(2:end))/2; 
+% Spacing between xn_vec_sgx grid points, padding the last value.
+dxudxn_sgx = [diff(xn_vec_sgx), xn_vec_sgx(end)-xn_vec_sgx(end-1)];
+
+% Set non-uniform grid in x-dimension
+kgrid = kgrid.setNUGrid(1, xn_vec, dxudxn, xn_vec_sgx, dxudxn_sgx);
+
+% Confirm non-uniform grid is set
+disp(['Non-uniform grid enabled: ', mat2str(kgrid.nonuniform)]);
+
+% =========================================================================
 % CONVENTIONAL SIMULATION
 % =========================================================================
 
