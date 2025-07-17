@@ -38,6 +38,15 @@ jobs:
             runUnitTests_artifact(test_struct);
           startup-options: -nojvm 
 
+      - name: Add failed tests summary to job summary
+        if: always()
+        run: |
+          summary_file="${{ github.workspace }}/k-Wave/testing/unit/failed_tests_summary.md"
+          if [ -f "$summary_file" ]; then
+            cat "$summary_file" >> "$GITHUB_STEP_SUMMARY"
+          fi
+        shell: bash
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:

@@ -64,23 +64,27 @@ num_failed = numel(results) - num_passed;
 disp(['✅ Number of tests passed: ' num2str(num_passed)]);
 disp(['❌ Number of tests failed: ' num2str(num_failed)]);
 disp('  ');
-% Show failed tests using Markdown table with foldout for test_info
+
+
+% Write failed tests summary as Markdown to a file
 failed_idx = find(~[results.pass]);
 if ~isempty(failed_idx)
-    disp('❌ FAILED TESTS (Markdown Table):');
-    disp('| Test Name | Details |');
-    disp('|-----------|---------|');
+    mdfile = 'failed_tests_summary.md'; % Output filename
+    fid = fopen(mdfile, 'w');
+    fprintf(fid, '## Failed Tests\n');
+    fprintf(fid, '| Test Name | Info |\n');
+    fprintf(fid, '|-----------|------|\n');
     for i = failed_idx
         fn = results(i).test;
-        fn = fn(1:end - 2);
+        fn = strrep(fn(1:end - 2), '|', '\|'); % escape pipes in test name
         if ~isempty(results(i).test_info)
-            % Use raw Markdown details tag for foldout
-            details_str = sprintf('<details><summary>Show Info</summary>\n\n%s\n\n</details>', results(i).test_info);
+            info_str = ['```', newline, results(i).test_info, newline, '```'];
         else
-            details_str = '';
+            info_str = '';
         end
-        % Only escape pipe characters in details_str
-        details_str = strrep(details_str, '|', '\|');
-        disp(['| ' fn ' | ' details_str ' |']);
+        info_str = strrep(info_str, '|', '\|'); % escape pipes in info
+        fprintf(fid, '| %s | %s |\n', fn, info_str);
     end
+    fclose(fid);
+    disp(['Failed tests summary written to ' mdfile]);
 end
